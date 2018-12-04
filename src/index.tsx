@@ -1,9 +1,16 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import dva from 'dva';
+import createHistory from 'history/createBrowserHistory';
 
-import { Hello } from "./components/Hello";
+const app = dva({
+  history: createHistory()
+});
 
-ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
-    document.getElementById("example")
-);
+import router from './router';
+import count from './models/count';
+// 4. 注册程序路由
+app.router(router);
+
+app.model(count);
+
+// 5. 启动项目
+app.start('#root');

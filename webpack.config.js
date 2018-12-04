@@ -1,41 +1,77 @@
+
+const path = require('path');
+// plugins
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const PROJECT_ROOT = __dirname;
+const SRC =  path.join(PROJECT_ROOT, '/', 'src');
+const PUBLIC =  path.join(PROJECT_ROOT, '/', 'public');
+const ENVIRONMENT = process.env.ENVIRONMENT || 'development';
+const isDevelopment = ENVIRONMENT === 'development';
+
 module.exports = {
+  context: PROJECT_ROOT,
   entry: "./src/index.tsx",
   output: {
-      filename: "bundle.js",
-      path: __dirname + "/public"
+      filename: "[name].[hash].bundle.js",
+      path: PUBLIC
   },
 
-  // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",
 
   resolve: {
-      // Add '.ts' and '.tsx' as resolvable extensions.
-      extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json", ".css"]
   },
 
   module: {
       rules: [
-          // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-          {
-            test: /\.tsx?$/,
-            loader: "awesome-typescript-loader"
-          },
+        {
+          test: /\.css$/,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+              },
+            },
+          ]
+        },
 
-          // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-          {
-            enforce: "pre",
-            test: /\.js$/,
-            loader: "source-map-loader"
-          }
+        {
+          exclude: /node_modules/,
+          test: /\.tsx?$/,
+          use: [
+            "babel-loader",
+            "awesome-typescript-loader",
+          ]
+        },
       ]
   },
 
-  // When importing a module whose path matches one of the following, just
-  // assume a corresponding global variable exists and use that instead.
-  // This is important because it allows us to avoid bundling all of our
-  // dependencies, which allows browsers to cache those libraries between builds.
-  externals: {
-      "react": "React",
-      "react-dom": "ReactDOM"
-  }
+  plugins: [
+    new WebpackCleanupPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      favicon: `${SRC}/assets/images/favicon.ico`,
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
+  ],
+
+  devServer: {
+    contentBase: SRC,
+    hot: true,
+    inline: true,
+    historyApiFallback: {
+      disableDotRule: true
+    },
+    stats: 'minimal',
+    clientLogLevel: 'warning'
+  },
 };
