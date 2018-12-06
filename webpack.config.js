@@ -1,9 +1,11 @@
 
 const path = require('path');
+const webpack = require('webpack');
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 const PROJECT_ROOT = __dirname;
 const SRC =  path.join(PROJECT_ROOT, '/', 'src');
@@ -13,44 +15,44 @@ const isDevelopment = ENVIRONMENT === 'development';
 
 module.exports = {
   context: PROJECT_ROOT,
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
   output: {
-      filename: "[name].[hash].bundle.js",
-      path: PUBLIC
+    filename: '[name].[hash].js',
+    path: PUBLIC
   },
 
-  devtool: "source-map",
+  devtool: 'source-map',
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json", ".css"]
+    extensions: ['.ts', '.tsx', '.js', '.json', '.css']
   },
 
   module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: [
-            { loader: MiniCssExtractPlugin.loader },
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
-              },
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
             },
-          ]
-        },
+          },
+        ]
+      },
 
-        {
-          exclude: /node_modules/,
-          test: /\.tsx?$/,
-          use: [
-            "babel-loader",
-            "awesome-typescript-loader",
-            "eslint-loader"
-          ]
-        },
-      ]
+      {
+        exclude: /node_modules/,
+        test: /\.tsx?$/,
+        use: [
+          'babel-loader',
+          'awesome-typescript-loader',
+          'eslint-loader'
+        ]
+      },
+    ]
   },
 
   plugins: [
@@ -58,12 +60,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html',
       favicon: `${SRC}/assets/images/favicon.ico`,
+      inlineSource: 'runtime~.+\\.js',
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
+    // This plugin enables the “inlineSource” option
+    new InlineSourcePlugin(),
+    new webpack.HashedModuleIdsPlugin(),
   ],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
+  },
 
   devServer: {
     contentBase: SRC,

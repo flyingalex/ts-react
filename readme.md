@@ -6,3 +6,6 @@ css-modules:
 eslint:
 - https://juejin.im/entry/5a156adaf265da43231aa032
 - https://github.com/AlloyTeam/eslint-config-alloy#typescript
+
+优化:
+- https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching
