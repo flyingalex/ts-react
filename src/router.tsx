@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Route, Router, Switch } from 'dva/router';
-
 import Count from './components/Count';
 import World from './components/World';
 
