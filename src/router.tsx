@@ -6,10 +6,10 @@ import World from './components/World';
 
 export default ({ history }: { history: any }) => {
   return (
-    <Router history = {history}>
+    <Router history={history}>
       <Switch>
-        <Route path="/count" component={ Count } />
-        <Route path="/" component={ World } />
+        <Route path="/count" component={Count} />
+        <Route path="/" component={World} />
       </Switch>
     </Router>
   );
