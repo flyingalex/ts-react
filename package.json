@@ -1,5 +1,5 @@
 {
-  "name": "ts-react",
+  "name": "ts-react-boilerplate",
   "version": "1.0.0",
   "description": "A boilerplate for typescrip react",
   "main": "index.js",
@@ -48,6 +48,7 @@
     "babel-plugin-react-css-modules": "^4.0.0",
     "dva": "^2.4.1",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "tslib": "^1.9.3"
   }
 }

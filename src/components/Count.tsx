@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { SFC } from 'react';
 import { connect } from 'dva';
 import './Count.css';
 
@@ -8,19 +8,16 @@ type Props = {
   dispatch: (object: Object) => any;
 };
 
-class Count extends React.Component<Props, {}> {
-  render() {
-    return (
-      <div styleName="normal">
-        <h1 styleName="title">Dva boilerplate with typescript</h1>
-          Count:{this.props.count}
-        <hr />
-        <button onClick={() => { this.props.dispatch({ type: 'count/add' }) }}>Add</button>
-        <button onClick={() => { this.props.dispatch({ type: 'count/minus' }) }}>Minus</button>
-      </div>
-    );
-  }
-}
+
+const Count: SFC<Props> = ({ count, dispatch }) => (
+  <div styleName="normal">
+    <h1 styleName="title">Dva boilerplate with typescript</h1>
+      Count:{count}
+    <hr />
+    <button onClick={() => { dispatch({ type: 'count/add' }) }}>Add</button>
+    <button onClick={() => { dispatch({ type: 'count/minus' }) }}>Minus</button>
+  </div>
+);
 
 export default connect(({ count }: { count: number }) => ({
   count,
