@@ -49,9 +49,16 @@ module.exports = {
         use: [
           'babel-loader',
           'awesome-typescript-loader',
-          'eslint-loader'
         ]
       },
+
+      {
+        test: /\.ts$/,
+        enforce: 'pre',
+        use: [
+            'tslint-loader',
+        ]
+      }
     ]
   },
 

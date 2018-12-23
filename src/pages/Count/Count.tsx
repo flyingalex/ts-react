@@ -8,14 +8,25 @@ type Props = {
   dispatch: (object: Object) => any;
 };
 
-
 const Count: SFC<Props> = ({ count, dispatch }) => (
   <div styleName="normal">
     <h1 styleName="title">Dva boilerplate with typescript</h1>
-      Count:{count}
+    <div>Count:{count}</div>
     <hr />
-    <button onClick={() => { dispatch({ type: 'count/add' }) }}>Add</button>
-    <button onClick={() => { dispatch({ type: 'count/minus' }) }}>Minus</button>
+    <button
+      onClick={() => {
+        dispatch({ type: 'count/add' });
+      }}
+    >
+      Add
+    </button>
+    <button
+      onClick={() => {
+        dispatch({ type: 'count/minus' });
+      }}
+    >
+      Minus
+    </button>
   </div>
 );
 

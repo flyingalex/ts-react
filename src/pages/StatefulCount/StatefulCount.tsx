@@ -20,26 +20,26 @@ class World extends Component<Props, State> {
     const { count, dispatch } = this.props;
     return (
       <div styleName="normal">
-        <h1>
-          Count:{count}
-        </h1>
+        <h1>Count:{count}</h1>
         <button onClick={this.handleIncrement.bind(this, dispatch)}>Add</button>
-        <button onClick={this.handleDecrement.bind(this, dispatch)}>Minus</button>
-        <Link to="/count" >Count</Link>
+        <button onClick={this.handleDecrement.bind(this, dispatch)}>
+          Minus
+        </button>
+        <Link to="/count">Count</Link>
         <div>{`You've clicked me ${clicksCount} times!`}</div>
       </div>
     );
   }
 
-  private handleIncrement = (dispatch) => {
+  private handleIncrement = dispatch => {
     this.setState(incrementClicksCount);
     dispatch({ type: 'count/add' });
-  }
+  };
 
-  private handleDecrement = (dispatch) => {
+  private handleDecrement = dispatch => {
     this.setState(incrementClicksCount);
     dispatch({ type: 'count/minus' });
-  }
+  };
 }
 
 const incrementClicksCount = (prevState: State) => ({
@@ -49,4 +49,3 @@ const incrementClicksCount = (prevState: State) => ({
 export default connect(({ count }: { count: number }) => ({
   count,
 }))(World);
-
