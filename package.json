@@ -7,8 +7,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
-    "test": "jest",
-    "precommit": "lint-staged"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Hulin",
@@ -51,6 +50,11 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "tslib": "^1.9.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "src/**/*.ts*": [
