@@ -1,25 +1,44 @@
-### 技术栈
+# coderiver
+
+致力于打造全平台全栈精品开源项目
+
+## 技术栈
 
 ts, dva, webpack, jest, css-modules, aribnb-tslint
 
-### 参考文章
+## 文件目录
 
-css-modules:
+```
 
-- [https://qiita.com/Quramy/items/a5d8967cdbd1b8575130](https://qiita.com/Quramy/items/a5d8967cdbd1b8575130)
+├── src
+│   ├── assets
+│   ├── components
+│   ├── models
+│   ├── pages
+├── public
 
-tslint:
+```
 
-- [https://blog.aurity.co/typescript-tslint-tsairbnb-prettier-jest-babel-7-with-react-native-3ad9969c56a3](https://blog.aurity.co/typescript-tslint-tsairbnb-prettier-jest-babel-7-with-react-native-3ad9969c56a3)
+## 环境依赖
 
-优化:
+- nodejs >= 10.14.2
+- yarn >= 1.12.3
 
-- [https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching](https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching)
+## 开发
 
-link-staged:
+```
+yarn
+yarn start
+```
 
-- [https://mp.weixin.qq.com/s/9ZrGfal53jgSso7De0YTRw](https://mp.weixin.qq.com/s/9ZrGfal53jgSso7De0YTRw)
+## 构建
 
-移动端适配:
+```
+yarn build
+```
 
-- [https://www.w3cplus.com/mobile/vw-layout-in-vue.html](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)
+## 测试
+
+```
+yarn test
+```
