@@ -22,9 +22,7 @@ class World extends Component<Props, State> {
       <div styleName="normal">
         <h1>Count:{count}</h1>
         <button onClick={this.handleIncrement.bind(this, dispatch)}>Add</button>
-        <button onClick={this.handleDecrement.bind(this, dispatch)}>
-          Minus
-        </button>
+        <button onClick={this.handleDecrement.bind(this, dispatch)}>Minus</button>
         <Link to="/count">Count</Link>
         <div>{`You've clicked me ${clicksCount} times!`}</div>
       </div>
