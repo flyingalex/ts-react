@@ -1,4 +1,3 @@
-
 const path = require('path');
 const webpack = require('webpack');
 // plugins
@@ -8,8 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 const PROJECT_ROOT = __dirname;
-const SRC =  path.join(PROJECT_ROOT, '/', 'src');
-const PUBLIC =  path.join(PROJECT_ROOT, '/', 'public');
+const SRC = path.join(PROJECT_ROOT, '/', 'src');
+const PUBLIC = path.join(PROJECT_ROOT, '/', 'public');
 const ENVIRONMENT = process.env.ENVIRONMENT || 'development';
 const isDevelopment = ENVIRONMENT === 'development';
 
@@ -18,13 +17,13 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     filename: '[name].[hash].js',
-    path: PUBLIC
+    path: PUBLIC,
   },
 
   devtool: 'source-map',
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.css']
+    extensions: ['.ts', '.tsx', '.js', '.json', '.css'],
   },
 
   module: {
@@ -40,26 +39,21 @@ module.exports = {
               localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
             },
           },
-        ]
+        ],
       },
 
       {
         exclude: /node_modules/,
         test: /\.tsx?$/,
-        use: [
-          'babel-loader',
-          'awesome-typescript-loader',
-        ]
+        use: ['babel-loader', 'awesome-typescript-loader'],
       },
 
       {
         test: /\.ts$/,
         enforce: 'pre',
-        use: [
-            'tslint-loader',
-        ]
-      }
-    ]
+        use: ['tslint-loader'],
+      },
+    ],
   },
 
   plugins: [
@@ -71,7 +65,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css'
+      chunkFilename: '[id].css',
     }),
     // This plugin enables the “inlineSource” option
     new InlineSourcePlugin(),
@@ -81,7 +75,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-    }
+    },
   },
 
   devServer: {
@@ -89,9 +83,9 @@ module.exports = {
     hot: true,
     inline: true,
     historyApiFallback: {
-      disableDotRule: true
+      disableDotRule: true,
     },
     stats: 'minimal',
-    clientLogLevel: 'warning'
+    clientLogLevel: 'warning',
   },
 };

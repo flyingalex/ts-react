@@ -4,7 +4,6 @@ import './Count.css';
 
 type Props = {
   count: number;
-  children?: React.ReactNode;
   dispatch: (object: Object) => any;
 };
 
