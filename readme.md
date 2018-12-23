@@ -19,3 +19,7 @@ tslint:
 link-staged:
 
 - [https://mp.weixin.qq.com/s/9ZrGfal53jgSso7De0YTRw](https://mp.weixin.qq.com/s/9ZrGfal53jgSso7De0YTRw)
+
+移动端适配:
+
+- [https://www.w3cplus.com/mobile/vw-layout-in-vue.html](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)
