@@ -1,6 +1,6 @@
 ### 技术栈
 
-TS, dva, webpack, jest, css-modules, aribnb-eslint
+ts, dva, webpack, jest, css-modules, aribnb-tslint
 
 ### 参考文章
 
