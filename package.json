@@ -62,5 +62,8 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "browserslist": [
+    "last 2 major versions"
+  ]
 }
